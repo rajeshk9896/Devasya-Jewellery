@@ -1,0 +1,81 @@
+# ---------------------------------------------------------------------------
+# Devasya product dashboard (Decap CMS)
+# STEP: change the repo line below to  your-github-username/your-repo-name
+# ---------------------------------------------------------------------------
+backend:
+  name: github
+  repo: rajeshk9896/devasya-jewellery
+  branch: main
+  # If logging in fails on www.devasyajewellery.com/admin, uncomment the next
+  # line and put your Netlify address (for example devasya.netlify.app) here:
+  # site_domain: YOUR-SITE.netlify.app
+
+# Photos you upload are saved in this folder of the repository
+media_folder: "images/products"
+public_folder: "/images/products"
+
+locale: "en"
+site_url: https://www.devasyajewellery.com
+display_url: https://www.devasyajewellery.com
+
+collections:
+  - name: "products"
+    label: "Products"
+    label_singular: "Product"
+    description: "Add a product, upload its photos and press Publish. It appears on the website in about a minute."
+    folder: "content/products"
+    create: true
+    extension: "json"
+    format: "json"
+    slug: "{{slug}}"
+    summary: "{{title}}  ·  ₹{{price}}"
+    sortable_fields: ["date", "title", "price"]
+    fields:
+      - { label: "Product name", name: "title", widget: "string" }
+      - label: "Collection"
+        name: "collection"
+        widget: "select"
+        options:
+          - { label: "Temple jewellery", value: "temple" }
+          - { label: "Heritage jewellery", value: "heritage" }
+          - { label: "Panchaloh jewellery", value: "panchaloh" }
+          - { label: "Imitation jewellery", value: "imitation" }
+      - { label: "Price (₹)", name: "price", widget: "number", value_type: "int", min: 1 }
+      - { label: "Old price (₹), optional. It shows crossed out next to the price", name: "compare_price", widget: "number", value_type: "int", min: 1, required: false }
+      - { label: "Main photo", name: "image", widget: "image", required: false, hint: "Upright photo, about 4:5 shape, works best. Any size is fine." }
+      - label: "More photos (optional)"
+        name: "gallery"
+        widget: "list"
+        required: false
+        field: { label: "Photo", name: "photo", widget: "image" }
+      - { label: "Material and size line", name: "material", widget: "string", required: false, hint: "For example: Temple finish · kemp stones · 30 in" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - label: "Highlights (optional)"
+        name: "details"
+        widget: "list"
+        required: false
+        field: { label: "Highlight", name: "detail", widget: "string" }
+      - label: "Suitable for"
+        name: "occasions"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+          - { label: "Weddings & receptions", value: "wedding" }
+          - { label: "Festivals & puja", value: "festival" }
+          - { label: "Parties", value: "party" }
+          - { label: "Formal & office", value: "formal" }
+          - { label: "Everyday", value: "everyday" }
+      - label: "Badge (optional)"
+        name: "tag"
+        widget: "select"
+        required: false
+        options: ["New", "Bestseller", "Limited"]
+      - { label: "In stock", name: "in_stock", widget: "boolean", default: true, hint: "Turn off to show 'Sold out' on the website" }
+      - label: "Drawn picture style (only used when there is no photo)"
+        name: "type"
+        widget: "select"
+        required: false
+        default: "necklace"
+        options: ["necklace", "jhumka", "bangle", "pendant", "tikka", "ring"]
+      - { label: "Date added", name: "date", widget: "datetime", hint: "Newest products show first on the website" }
