@@ -4,7 +4,7 @@
 # ---------------------------------------------------------------------------
 backend:
   name: github
-  repo: rajeshk9896/devasya-jewellery
+  repo: rajeshk9896/Devasya-Jewellery
   branch: main
   # If logging in fails on www.devasyajewellery.com/admin, uncomment the next
   # line and put your Netlify address (for example devasya.netlify.app) here:
